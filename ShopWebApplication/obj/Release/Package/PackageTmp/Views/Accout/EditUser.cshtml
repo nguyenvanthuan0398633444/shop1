@@ -1,0 +1,76 @@
+﻿@model ShopWebApplication.Models.Account
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>EditUser</h2>
+<form action="/Accout/EditUser" enctype="multipart/form-data" method="post">
+    <input data-val="true" data-val-number="The field AccountID must be a number." data-val-required="The AccountID field is required." id="AccountID" name="AccountID" type="hidden" value="1">    <div id="edit-profile" containerclass="container">
+        <div class="row ">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="profile-sidebar">
+                    <div class="col-md-12">
+                        <label class="col-md-3">Name:</label>
+                        <input class="col-md-8" name="Name" type="text" value="Nguyễn Văn Thuận">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3">Email:</label>
+                        <input class="col-md-8" name="Email" type="email" value="thuan@gmail.com">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="col-md-3">PhotoPart:</label>
+                        <input class="col-md-3" name="PhotoPath" type="file" value="ao-kieu-nu-orgamie-s10-mau-xanh-coban.jpg">
+                        <img class="col-md-5 img-user" src="/Content/Image/ao-kieu-nu-orgamie-s10-mau-xanh-coban.jpg">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="button" class="btn btn-secondary"><a href="/Accout">Back to List</a></button>
+                            <input type="submit" value="SAVE" class="btn btn-success">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+@*@using (Html.BeginForm("EditAccount", "Accout", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+
+{
+    @Html.ValidationSummary(true)
+    @Html.Hidden("AccountID", Model.AccountID)
+    <div id="edit-profile" containerclass="container">
+        <div class="row ">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+               
+
+                    <div class="profile-sidebar">
+                        <div class="col-md-12">
+                            <label class="col-md-3">Name:</label>
+                            <input class="col-md-8" name="Name" type="text" value="@Model.Name" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3">Email:</label>
+                            <input class="col-md-8" name="Email" type="email" value="@Model.Email">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3">PhotoPart:</label>
+                            <input class="col-md-3" name="PhotoPath" type="file" value="@Model.PhotoPath">
+                            <img class="col-md-5 img-user" src="~/Content/Image/@Model.PhotoPath" />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-secondary">@Html.ActionLink("Back to List", "Index")</button>
+                                <input type="submit" value="SAVE" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+}*@

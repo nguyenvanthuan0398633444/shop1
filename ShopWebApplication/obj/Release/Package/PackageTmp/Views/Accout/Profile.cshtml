@@ -1,0 +1,148 @@
+﻿@model ShopWebApplication.Models.Account
+@using ShopWebApplication.Models
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Profile</h2>
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3"></div>
+        <div class="profile-sidebar col-md-6">
+            <div class="profile-userpic">
+                <img src="~/Content/Image/@Model.PhotoPath" class="img-user" alt="">
+            </div>
+
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    <b>@ViewBag.Type</b>
+                </div>
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    <b>Account:</b> @Model.Name
+                </div>
+            </div>
+            <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                    <b>Email:</b> @Model.Email
+                </div>
+            </div>
+            <div class="profile-edit">
+                <button id="profile" class="btn btn-primary">Edit User </button>
+                <button id="password" class="btn btn-primary"><a href="/Accout/EditPassword/@Model.AccountID">Edit Password</a></button>
+            </div>
+        </div>
+    </div>
+    <div id="edit-profile" containerclass="container">
+        <div class="row ">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form action="/Accout/EditUser" enctype="multipart/form-data" method="post">
+                    @Html.ValidationSummary(true)
+                    @Html.Hidden("AccountID", Model.AccountID)
+                    <div class="profile-sidebar">
+                        <div class="col-md-12">
+                            <label class="col-md-3">Name:</label>
+                            <input class="col-md-8" name="Name" type="text" value="@Model.Name" />
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3">Email:</label>
+                            <input class="col-md-8" name="Email" type="email" value="@Model.Email">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="col-md-3">PhotoPart:</label>
+                            <input class="col-md-3" name="PhotoPath" type="file" value="@Model.PhotoPath">
+                            <img class="col-md-5 img-user" src="~/Content/Image/@Model.PhotoPath" />
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                                <input type="submit" value="SAVE" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var a = document.querySelector('#profile');
+    var b = document.querySelector('#edit-profile');
+    var c = document.querySelector('.btn-secondary');
+    var d = document.querySelector('.profile');
+    b.classList.add("an");
+
+    a.addEventListener('click', function () {
+          b.classList.remove("an");
+        b.classList.add("hien");
+        d.classList.add("an");
+    });
+    c.addEventListener('click', function () {
+        b.classList.remove("hien");
+        b.classList.add("an");
+        d.classList.remove("an");
+    });
+</script>
+    <style>
+        .hien{display:block;}
+        .an{display:none;}
+        body {
+            background: #F1F3FA;
+        }
+        .profile {
+            margin: 20px 0;
+        }
+        .profile-sidebar {
+            padding: 20px 0 10px 0;
+            background: #fff;
+            border: 2px solid #e1eff8;
+            border-radius: 5px;
+        }
+
+        .profile-userpic img {
+            float: none;
+            margin: 0 auto;
+            width: 70%;
+            height: 70%;
+            -webkit-border-radius: 50% !important;
+            -moz-border-radius: 50% !important;
+            border-radius: 50% !important;
+        }
+
+        .profile-usertitle {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .profile-userpic {
+            text-align: center;
+        }
+        .profile-edit {
+            display: flex;
+            justify-content: space-between;
+            margin: 1%;
+        }
+        .col-md-9 {
+            background: #fff;
+        }
+        .img-user{
+            max-width:40%;
+            width: 100%;
+            height:auto;
+        }
+        #edit-profile {
+            position: absolute;         
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        a {
+            color: white !important;
+            text-decoration: none !important;
+        }
+    </style>
+   
+

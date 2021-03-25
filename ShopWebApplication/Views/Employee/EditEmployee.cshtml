@@ -1,0 +1,82 @@
+﻿@model ShopWebApplication.Models.Employee
+
+@{
+    ViewBag.Title = "NewEmployee";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    string  date2 = null;
+    string date = null;
+    string[] date1;
+    if (Model.BirthDate != null)
+    {
+
+        date = @Model.BirthDate.ToString().Substring(0, 10
+            ) + "/";
+        date1 = date.Split('/');
+        date2 = (date1[2] + '-' + date1[0] + '-' + date1[1]);
+    }
+}
+<h2> Edit Employee</h2>
+
+@using (Html.BeginForm("EditEmployee", "Employee", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.EmployeeID)
+
+        <div class="form-group productNew">
+            @Html.LabelFor(model => model.EmployeeName, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-5">
+
+                <input class="col-md-8 form-control text-box single-line" my-date-format="dd/MM/yyyy" name="BirthDate" type="date" style="margin:0;" value="@date2" />
+                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group productNew">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+
+            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group productNew">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-1" })
+            <div class="col-md-11">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-secondary">@Html.ActionLink("Back to List", "Index")</button>
+                <input type="submit" value="SAVE" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
